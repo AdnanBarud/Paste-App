@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { addToPastes, updateToPastes } from '../redux/pasteSlice';
 
 const Home = () => {
 
@@ -7,15 +9,28 @@ const Home = () => {
   const [value, setValue] = useState('');
   const [serachParams, setSearchParams] = useSearchParams('');
 
+  const dispatch = useDispatch();
   const pastesId = serachParams.get('pastesId');
   
   function createPaste() {
-    
+    const paste= {
+      title: title,
+      content: value,
+      _id: pastesId
+       ||  Date.now().toString(36),
+      createtAt: new Date().toISOString(),
+    }
     if (pastesId) {
       // update existing paste 
+      dispatch(updateToPastes(paste));
     } else {
       // create new paste
+      dispatch(addToPastes(paste));
     }
+
+    title('');
+    value('');
+    setSearchParams({});
   }
   return (
     <div>
