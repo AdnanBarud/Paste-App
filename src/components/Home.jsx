@@ -9,6 +9,14 @@ const Home = () => {
 
   const pastesId = serachParams.get('pastesId');
   
+  function createPaste() {
+    
+    if (pastesId) {
+      // update existing paste 
+    } else {
+      // create new paste
+    }
+  }
   return (
     <div>
       <div className='flex flex-row items-center gap-3 p-3'>
@@ -22,6 +30,7 @@ const Home = () => {
 
        <button
        className='rounded-2xl border-gray-300 bg-black mt-4 p-2 '
+       onClick={createPaste}
        >
         {
         pastesId 
