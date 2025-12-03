@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
-import { pasteReducer } from './redux/pasteSlice'
+import pasteReducer from './redux/pasteSlice.js'
 
 export const store = configureStore({
   reducer: {
+    
     paste: pasteReducer,
   },
 })
