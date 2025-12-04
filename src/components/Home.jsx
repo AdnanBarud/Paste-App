@@ -28,13 +28,13 @@ const Home = () => {
       dispatch(addToPastes(paste));
     }
 
-    title('');
-    value('');
+    setTitle('');
+    setValue('');
     setSearchParams({});
   }
   return (
     <div>
-      <div className='flex flex-row items-center gap-3 p-3'>
+      <div className='flex flex-row items-center gap-3 '>
       <input
       className='rounded-2xl border-gray-300 bg-black mt-4 p-2 pl-4 min-w-100'
         type="text" 

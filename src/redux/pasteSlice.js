@@ -1,31 +1,57 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
-  pastes:localStorage.getItem("pastes")
-   ? JSON.parse(localStorage.getItem("pastes")) 
-   : [],
-}
+  pastes: localStorage.getItem("pastes")
+    ? JSON.parse(localStorage.getItem("pastes"))
+    : [],
+};
 
 export const pasteSlice = createSlice({
-  name: 'counter',
+  name: "pastes",
   initialState,
   reducers: {
     addToPastes: (state, action) => {
-      
+      const paste = action.payload;
+      state.pastes.push(paste);
+      localStorage.setItem("pastes", JSON.stringify(state.pastes));
+      toast.success("Paste Created Successfully!");
     },
     updateToPastes: (state, action) => {
-     
+      const paste = action.payload;
+      const index = state.pastes.findIndex((item) => item._id === paste._id);
+
+      if (index >= 0) {
+        state.pastes[index] = paste;
+        localStorage.setItem("pastes", JSON.stringify(state.pastes));
+        toast.success("Paste Updated Successfully!");
+      }
     },
     removeFromPastes: (state, action) => {
-      
+      const pasteId = action.payload;
+
+      const index = state.pastes.findIndex((item) => item._id === pasteId);
+
+      if (index >= 0) {
+        state.pastes.splice(index, 1); // remove the paste
+
+        localStorage.setItem("pastes", JSON.stringify(state.pastes));
+
+        toast.success("Paste deleted");
+      } else {
+        toast.error("Paste not found");
+      }
     },
+
     resetAllPastes: (state, action) => {
-      
+      localStorage.removeItem("pastes");
+      state.pastes = [];
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { addToPastes, updateToPastes, removeFromPastes, resetAllPastes } = pasteSlice.actions
+export const { addToPastes, updateToPastes, removeFromPastes, resetAllPastes } =
+  pasteSlice.actions;
 
-export default pasteSlice.reducer
+export default pasteSlice.reducer;
