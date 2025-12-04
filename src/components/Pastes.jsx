@@ -2,7 +2,7 @@ import React from 'react'
 
 const pastes = () => {
   return (
-    <div>pastes</div>
+    <div>padstes</div>
   )
 }
 
