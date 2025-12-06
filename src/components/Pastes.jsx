@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import toLowerCase from 'react'
+
 
 const pastes = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
-
   const pastes = useSelector( (state) => state.paste.pastes );
 
   const filterPastes =  pastes.filter(
-    (paste) => paste.title.toLowerCase().includes().searchTerm.toLowerCase()
+    (paste) => paste.title.toLowerCase().includes(searchTerm.toLowerCase())
   )
  
   return (
@@ -19,7 +18,7 @@ const pastes = () => {
       type="search"
       placeholder='search here'
       value={searchTerm}
-      onChange={(e) => setSearchTerm(searchTerm)}
+      onChange={(e) => setSearchTerm(e.target.value)}
       />
     </div>
   )
