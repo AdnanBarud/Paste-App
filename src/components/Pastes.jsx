@@ -64,7 +64,7 @@ const pastes = () => {
                 </div>
                 <div>
                   <button >
-                    <a href='/?pastes=${paste?._id}' >
+                    <a href={`/?pastes=${paste?._id}`}>
                       Edit
                     </a>
                     
