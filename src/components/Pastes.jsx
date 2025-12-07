@@ -63,8 +63,11 @@ const pastes = () => {
                   {paste.content}
                 </div>
                 <div>
-                  <button onClick={() => handleEdit(paste?._id)}>
-                    Edit
+                  <button >
+                    <a href='/?pastes=${paste?._id}' >
+                      Edit
+                    </a>
+                    
                   </button>
                   <button onClick={() => handleCopy(paste)}>
                     Copy
@@ -72,7 +75,7 @@ const pastes = () => {
                   <button onClick={handleView}>
                     View
                   </button>
-                  <button onClick={handleDelete}>
+                  <button onClick={() => handleDelete(paste?._id)}>
                     Delete
                   </button>
                   <button onClick={handleShare}>
