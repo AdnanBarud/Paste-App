@@ -7,7 +7,7 @@ const ViewPaste = () => {
 
   const {id} = useParams();
   const allPastes = useSelector( (state) => state.paste.pastes);
-  const paste = allPastes.find((p) => p._id === id) || { title: "", content: "" };
+  const paste = allPastes.find((p) => p._id === id) || { title: "", content: "" }
 
   console.log(paste);
   
