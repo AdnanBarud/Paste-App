@@ -7,29 +7,32 @@ const Home = () => {
 
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
-  const [serachParams, setSearchParams] = useSearchParams('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const pastesId = serachParams.get('pastesId');
+  const pasteId = searchParams.get('pasteId');
+  
   
   const allPastes = useSelector( (state) => state.paste.pastes);
+
   useEffect(() => {
-    const pasteToEdit = allPastes.find( (paste) => paste._id === pastesId );
-    if (pasteToEdit) {
-      setTitle(pasteToEdit.title);
-      setValue(pasteToEdit.content);
+    
+    if (pasteId) {
+      const paste = allPastes.find( (p) => p._id === pasteId );
+      setTitle(paste.title);
+      setValue(paste.content);
     }
-  }, [pastesId])
+  }, [pasteId])
   
   function createPaste() {
     const paste= {
       title: title,
       content: value,
-      _id: pastesId
+      _id: pasteId
        ||  Date.now().toString(36),
-      createtAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     }
-    if (pastesId) {
+    if (pasteId) {
       // update existing paste 
       dispatch(updateToPastes(paste));
     } else {
@@ -57,7 +60,7 @@ const Home = () => {
        onClick={createPaste}
        >
         {
-        pastesId 
+        pasteId 
         ? 'Update Paste'
         : 'Create Paste'
         }
