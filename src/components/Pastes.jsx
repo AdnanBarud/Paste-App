@@ -23,9 +23,9 @@ const pastes = () => {
     navigator.clipboard.writeText(paste?.content);
     toast.success("Copied to clipboard!");
   }
-  function handleView() {
-    // implement view functionality
-  }
+  // function handleView() {
+  //   // implement view functionality
+  // }
   function handleDelete(pasteId) {
     // implement delete functionality
     dispatch(removeFromPastes(pasteId));
@@ -52,15 +52,14 @@ const pastes = () => {
                 <div>{paste.content}</div>
                 <div>
                   <button>
-                    <a
-                      className="px-2 py-1 bg-blue-600 rounded text-white"
-                      href={`/?pasteId=${paste?._id}`}
-                    >
-                      Edit
-                    </a>
+                    <a href={`/?pasteId=${paste?._id}`}>Edit</a>
                   </button>
                   <button onClick={() => handleCopy(paste)}>Copy</button>
-                  <button onClick={handleView}>View</button>
+                  <button>
+                    <button>
+                      <a href={`/view?pasteId=${paste?._id}`}>View</a>
+                    </button>
+                  </button>
                   <button onClick={() => handleDelete(paste?._id)}>
                     Delete
                   </button>
