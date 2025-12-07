@@ -52,13 +52,15 @@ const pastes = () => {
                 <div>{paste.content}</div>
                 <div>
                   <button>
-                    <a href={`/?pasteId=${paste?._id}`}>Edit</a>
+                    <a href={`/edit/${paste._id}`}>Edit</a>
+
                   </button>
                   <button onClick={() => handleCopy(paste)}>Copy</button>
                   <button>
-                    <button>
-                      <a href={`/view?pasteId=${paste?._id}`}>View</a>
-                    </button>
+                    <a href={`/view/${paste._id}`}>
+                      View
+                    </a>
+
                   </button>
                   <button onClick={() => handleDelete(paste?._id)}>
                     Delete

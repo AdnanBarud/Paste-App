@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { addToPastes, updateToPastes } from '../redux/pasteSlice';
 
 const ViewPaste = () => {
+
+  const {id} = useParams();
+  const allPastes = useSelector( (state) => state.paste.pastes);
+  const paste = allPastes.find((p) => p._id === id) || { title: "", content: "" };
+
+  console.log(paste);
+  
   return (
     <div>
       <div className='flex flex-row items-center gap-3 '>
@@ -11,21 +18,12 @@ const ViewPaste = () => {
       className='rounded-2xl border-gray-300 bg-black mt-4 p-2 pl-4 min-w-100'
         type="text" 
         placeholder="Enter Title here"
-        value={title}
+        value={paste.title}
+        disabled
         onChange={(e) => setTitle((e.target.value))}
        />
 
-       <button
-       className='rounded-2xl border-gray-300 bg-black mt-4 p-2 '
-       onClick={createPaste}
-       >
-        {
-        pasteId 
-        ? 'Update Paste'
-        : 'Create Paste'
-        }
-       </button>
-
+       
        </div>
 
        <div
@@ -33,7 +31,8 @@ const ViewPaste = () => {
         <textarea 
         className='rounded-2xl border-gray-300 bg-black mt-4 p-5 min-w-100 min-h-140'
         placeholder="Write your note here..."
-        value={value}
+        value={paste.content}
+        disabled
         onChange={(e) => setValue(e.target.value)}
 
         />

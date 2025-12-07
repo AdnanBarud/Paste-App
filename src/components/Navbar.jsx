@@ -16,6 +16,7 @@ const Navbar = () => {
       >
         Pastes
       </NavLink>
+      
     </div>
   )
 }

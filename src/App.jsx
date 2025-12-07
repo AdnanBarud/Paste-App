@@ -25,8 +25,16 @@ const router = createBrowserRouter(
         <Pastes />
       </div>
     },
+    // {
+    //   path: '/id',
+    //   element: 
+    //   <div>
+    //     <Navbar />
+    //     <ViewPaste />
+    //   </div>
+    // },
     {
-      path: '/id',
+      path: '/view',
       element: 
       <div>
         <Navbar />
